@@ -1,0 +1,59 @@
+/*UIFORXY(x, y, (*cv_img_frame))
+		{
+			uc = myAbs(
+				cv_img_frame->at<cv::Vec3b>(y, x)[1] - cv_img_prevFrame->at<cv::Vec3b>(y, x)[1]
+			);
+			if (uc > 20)
+			{
+				cv_img_substractFrame->at<uchar>(y, x) = 255;
+				++pixelSum;
+				if (
+					x > leftBlock->m_x &&
+					x < leftBlock->m_x + leftBlock->m_a)
+				{
+					++pixelSumL;
+				}
+				else if (
+					x > rightBlock->m_x &&
+					x < rightBlock->m_x + rightBlock->m_a
+					)
+				{
+					++pixelSumR;
+				}
+
+			}
+		}*/
+
+		/////////////////////////////////
+		
+			//std::cout << ("PIXEL") << std::endl;
+			//v_cv_img_movement->push_back(*cv_img_frame);
+			//v_cv_img_substract->push_back(*cv_img_substractFrame);
+			
+			///////////////////////////
+
+			(*cv_img_prevFrame) = cv_img_frame->clone();
+
+		(*cv_vid_video) >> (*cv_img_frame);
+		if (cv_img_frame->empty()) break;
+
+		wasL = isL;
+		wasR = isR;
+
+		
+		pixelSum = 0;
+		pixelSumL = 0;
+		pixelSumR = 0;
+		uc = 0;
+		*cv_img_substractFrame = ZEROS((*cv_img_frame));
+
+		//////////////////////////////////
+
+		*cv_img_frameShow = cv_img_frame->clone();
+			cv::rectangle(*cv_img_frameShow, cv_draw_blockL, { 0,0,255 }, 2);
+			cv::rectangle(*cv_img_substractFrame, cv_draw_blockL, 255, 2);
+			cv::rectangle(*cv_img_frameShow, cv_draw_blockR, { 0,0,255 }, 2);
+			cv::rectangle(*cv_img_substractFrame, cv_draw_blockR, 255, 2);
+			imshow("Frame", *cv_img_frameShow);
+			imshow("substractFrame", *cv_img_substractFrame);
+			
