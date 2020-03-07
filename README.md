@@ -7,5 +7,16 @@ if current frame pixel minus previous frame pixel is more than 20 than resulting
 3) If the pixelsL is more than 750 boolean isL becomes true and false otherwise, the same goes for pixelsR and isR, respectively.
 4) If at previous frame (previous iteration of while cycle) isL was true boolean wasL is st to true and false, otherwise. The same goes for isR and wasR.  
 5) if isR is true and wasL is true and isL is false we count that one person goes out, and vise a versa for isL, wasL, isR and person going in.  
-6) the program is only calibrated to work with the video1.mp4 from res/videos foder.
+6) the program is only calibrated to work with the video1.mp4 from res/videos foder.  
+
+Settings for Visual Studio:  
+x64 Debug  
+VC++ Dir-s:  
+1) Include Dir-s: "opencv folder"\build\include;$(IncludePath)  
+2) Library dir-s: "opencv folder"\build\x64\vc15\lib;$(LibraryPath)  
+  
+  Linker:  
+  Input: additional Dependencies: opencv_world420d.lib  
+    
+Debugging: Environment:"opencv folder"\build\x64\vc15\bin
 
